@@ -36,41 +36,62 @@
 
 </head>
 
-<body class="mb-2 bg-secondary text-white">
+<body class="bg-secondary text-white">
 
 
-<nav class="navbar navbar-expand navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand navbar-dark bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="{% url 'lists' %}">Home Page</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{% url 'create' %}">Create</a>
-            </li>
-        </ul>
-        </div>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'lists' %}">Home Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'create' %}">Create</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-<div class="sidenav">
-    <a href="{% url 'lists' %}">Home</a>
-    <a href="{% url 'create' %}">Create</a>
-</div>
+    <div class="sidenav">
+        <a href="{% url 'lists' %}">Home</a>
+        <a href="{% url 'create' %}">Create</a>
+    </div>
 
-<div class="container" style="width: 20rem;">
-    <p class="fs-1 text-center">Shop list</p>
+    <div class="container" style="width: 20rem;">
+        <p class="fs-1 text-center">Category</p>
         <ul class="list-group">
-          <li class="list-group-item">Milk x2</li>
-          <li class="list-group-item">Eggs</li>
-          <li class="list-group-item">Butter</li>
+            <li class="list-group-item list-group-item-dark">Shop list</li>
+            <li class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+                <label class="form-check-label" for="firstCheckbox">Eggs</label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
+                <label class="form-check-label" for="secondCheckbox">Milk x2</label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
+                <label class="form-check-label" for="thirdCheckbox">Butter</label>
+            </li>
         </ul>
-</div>
+
+    </div>
+    <div class="container p-3" style="width: 20rem;">
+        <div class="input-group">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Add new item ...">
+            <div class="input-group-append">
+                <button type="submit" name="save" class="btn btn-success">Add</button>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 
 </html>
