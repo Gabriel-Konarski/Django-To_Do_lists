@@ -7,9 +7,9 @@ def lists(request):
     return render(request, "lists/home.html")
 
 
-def add_list(request):
+def addList(request):
     return render(request, "lists/add.html")
 
 
-def view_list(request):
+def viewList(request):
     return render(request, "lists/edit.html")
