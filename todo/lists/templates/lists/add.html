@@ -63,14 +63,28 @@
 
 
     <div class="container text-center" style="width: 20rem;">
-            <p class="fs-1 text-center">New list</p>
+        <p class="fs-1 text-center">New list</p>
 
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Category</option>
-                <option value="1">Shop list</option>
-                <option value="2">To do list</option>
-                <option value="3">Songs</option>
+        <div class="form-group m-3">
+            <label>List name</label>
+            <input required name="list_name" type="text" placeholder="Enter a list name" class="form-control">
+        </div>
+
+        <div class="form-group m-3">
+            <label>Select a category</label>
+            <select name="category" class="form-control">
+                <option value="none">Select a category...</option>
             </select>
+        </div>
+
+        <div class="form-group m-3">
+            <label>Select a category</label>
+            <input required name="category_new" type="text" placeholder="Create a new category" class="form-control">
+        </div>
+
+        <button type="button" class="btn btn-success">Create</button>
+
+
 
     </div>
 
