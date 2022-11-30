@@ -65,30 +65,34 @@
     <div class="container text-center" style="width: 20rem;">
         <p class="fs-1 text-center">New list</p>
 
-        <div class="form-group m-3">
-            <label>List name</label>
-            <input required name="list_name" type="text" placeholder="Enter a list name" class="form-control">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group m-3">
+                <label>List name</label>
+                <input required name="name" type="text" placeholder="Enter a list name" class="form-control">
+            </div>
+
+
+            <div class="form-group m-3">
+                <label>Select a category</label>
+                <select name="category" class="form-control">
+                    <option value="none">Select a category...</option>
+                    {% for category in categories%}
+                        <option value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="form-group m-3">
+                <label>Create new category</label>
+                <input name="category_new" type="text" placeholder="Create a new category" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-success">Create</button>
+            </form>
         </div>
-
-        <div class="form-group m-3">
-            <label>Select a category</label>
-            <select name="category" class="form-control">
-                <option value="none">Select a category...</option>
-            </select>
-        </div>
-
-        <div class="form-group m-3">
-            <label>Select a category</label>
-            <input required name="category_new" type="text" placeholder="Create a new category" class="form-control">
-        </div>
-
-        <button type="button" class="btn btn-success">Create</button>
-
-
-
-    </div>
-
-
 </body>
 
 </html>
