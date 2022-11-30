@@ -22,3 +22,6 @@ class Item(models.Model):
     lists = models.ForeignKey(List, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=100, null=False)
     complete = models.BooleanField()
+
+    def __str__(self):
+        return self.name

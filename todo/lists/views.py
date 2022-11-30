@@ -17,9 +17,15 @@ def lists(request):
 
     return render(request, "lists/home.html", context)
 
+
 def viewList(request, pk):
     lista = List.objects.get(id=pk)
-    return render(request, "lists/edit.html", {"lista": lista})
+    items = lista.item_set.all()
+
+    context = {"lista": lista, "items": items}
+
+    return render(request, "lists/edit.html", context)
+
 
 def addList(request):
     categories = Category.objects.all()
