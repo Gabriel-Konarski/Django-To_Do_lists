@@ -22,6 +22,15 @@ def viewList(request, pk):
     lista = List.objects.get(id=pk)
     items = lista.item_set.all()
 
+    if request.method == "POST":
+        data = request.POST
+
+        new_item = Item.objects.create(
+            lists=lista,
+            name=data['item'],
+            complete=False,
+        )
+
     context = {"lista": lista, "items": items}
 
     return render(request, "lists/edit.html", context)

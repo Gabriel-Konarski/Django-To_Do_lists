@@ -38,7 +38,6 @@
 
 <body class="bg-secondary text-white">
 
-
     <nav class="navbar navbar-expand navbar-dark bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Your lists</a>
@@ -78,15 +77,20 @@
         </ul>
 
     </div>
-    <div class="container p-3" style="width: 20rem;">
-        <div class="input-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Add new item ...">
-            <div class="input-group-append">
-                <button type="submit" name="save" class="btn btn-success">Add</button>
-            </div>
-        </div>
-    </div>
 
+
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="container p-3" style="width: 20rem;">
+            <div class="input-group">
+                <input name="item" type="text" class="form-control" id="formGroupExampleInput" placeholder="Add new item ...">
+                <div class="input-group-append">
+                    <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
 
 </body>
 
