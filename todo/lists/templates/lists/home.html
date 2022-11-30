@@ -32,6 +32,10 @@
 		.sidenav a:hover{
 			color:#f1f1f1;
 		}
+
+		.m_title:first-letter {
+             text-transform: uppercase
+        }
     </style>
 
 </head>
@@ -73,8 +77,10 @@
                         <div class="card-body">
                             <h5 class="card-title">{{list.category.name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{list.name}}</h6>
-                                    <p class="card-text">Milk x2, Eggs, Butter</p>
-                            <a href="% url 'view' lista.id %" class="btn btn-primary m-1">Edit</a>
+                                    {% for item in list.item_set.all %}
+                                        <p class="card-text m_title" >{{item}}</p>
+                                    {% endfor %}
+                            <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">Edit</a>
                             <button type="button" class="btn btn-danger">Delete</button>
 
                         </div>
@@ -87,7 +93,6 @@
 
 
         </div>
-    </div>
 
 </body>
 </html>
