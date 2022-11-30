@@ -1,15 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from .models import Category, List, Item
 # Create your views here.
 
 
 def lists(request):
-    return render(request, "lists/home.html")
+    category = request.GET.get('category')
 
+    if category is None:
+        all_lists = List.objects.all()
+    else:
+        all_lists = List.objects.filter(category__name=category)
+
+    categories = Category.objects.all()
+    context = {"categories": categories, "all_lists": all_lists}
+
+    return render(request, "lists/home.html", context)
+
+def viewList(request, pk):
+    lista = List.objects.get(id=pk)
+    return render(request, "lists/edit.html", {"lista": lista})
 
 def addList(request):
-    return render(request, "lists/add.html")
+    categories = Category.objects.all()
 
+    if request.method == 'POST':
+        data = request.POST
 
-def viewList(request):
-    return render(request, "lists/edit.html")
+        if data['category'] != 'none':
+            category = Category.objects.get(id=data['category'])
+        elif data["category_new"] != '':
+            category, created = Category.objects.get_or_create(name=data["category_new"])
+        else:
+            category = None
+
+        lista = List.objects.create(
+            category=category,
+            name=data['name'],
+        )
+
+        return redirect('lists')
+
+    context = {'categories': categories}
+    return render(request, "lists/add.html", context)
+

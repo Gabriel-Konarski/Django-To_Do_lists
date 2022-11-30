@@ -67,54 +67,23 @@
     <div class="container text-center">
         <div class="row">
 
-            <div class="col-md-4">
-                <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">To Do List</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Shop list</h6>
-                                <p class="card-text">Milk x2, Eggs, Butter</p>
-                        <a href="view/" class="btn btn-primary stretched-link">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
+            {% for list in all_lists %}
+                <div class="col-md-4">
+                    <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{list.category.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{list.name}}</h6>
+                                    <p class="card-text">Milk x2, Eggs, Butter</p>
+                            <a href="% url 'view' lista.id %" class="btn btn-primary m-1">Edit</a>
+                            <button type="button" class="btn btn-danger">Delete</button>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">To Do List</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Shop list</h6>
-                                <p class="card-text">Milk x2, Eggs, Butter</p>
-                        <a href="view/" class="btn btn-primary stretched-link">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">To Do List</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Shop list</h6>
-                                <p class="card-text">Milk x2, Eggs, Butter</p>
-                        <a href="view/" class="btn btn-primary stretched-link">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">To Do List</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Shop list</h6>
-                                <p class="card-text">Milk x2, Eggs, Butter</p>
-                        <a href="view/" class="btn btn-primary stretched-link">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
+                    {% empty %}
+                    <h3>No lists...</h3>
+                    {% endfor %}
+         </div>
 
 
         </div>
