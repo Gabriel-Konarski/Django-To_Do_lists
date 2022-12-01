@@ -63,8 +63,11 @@
     </nav>
 
     <div class="sidenav">
-        <a href="{% url 'lists' %}">Home</a>
-        <a href="{% url 'create' %}">Create</a>
+        <a href="{% url 'lists' %}">All</a>
+        {% for category in categories %}
+            <a href="{% url 'lists' %}?category={{category.name}}">{{category.name}}</a>
+        {% endfor %}
+
     </div>
 
 
