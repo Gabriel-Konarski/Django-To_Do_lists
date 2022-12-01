@@ -23,13 +23,26 @@ def viewList(request, pk):
     items = lista.item_set.all()
 
     if request.method == "POST":
-        data = request.POST
+        if request.POST.get("newItem"):
+            data = request.POST
 
-        new_item = Item.objects.create(
-            lists=lista,
-            name=data['item'],
-            complete=False,
-        )
+            if len(data['item']) > 2:
+                new_item = Item.objects.create(
+                    lists=lista,
+                    name=data['item'],
+                    complete=False,
+                )
+            else:
+                print("invalid")
+
+        elif request.POST.get("save"):
+            for item in items:
+                if request.POST.get("c" + str(item.id)) == "clicked":
+                    item.complete = True
+                else:
+                    item.complete = False
+
+                item.save()
 
     context = {"lista": lista, "items": items}
 

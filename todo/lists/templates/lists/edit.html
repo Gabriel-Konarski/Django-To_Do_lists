@@ -62,34 +62,40 @@
         <a href="{% url 'create' %}">Create</a>
     </div>
 
-    <div class="container" style="width: 20rem;">
-        <p class="fs-1 text-center">{{lista.category.name}}</p>
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-dark">{{lista.name}}</li>
-
-            {% for item in items %}
-            <li class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                <label class="form-check-label" for="firstCheckbox">{{item.name}}</label>
-            </li>
-
-            {% endfor %}
-        </ul>
-
-    </div>
-
-
     <form method="post" action="#">
         {% csrf_token %}
-        <div class="container p-3" style="width: 20rem;">
-            <div class="input-group">
-                <input name="item" type="text" class="form-control" id="formGroupExampleInput" placeholder="Add new item ...">
-                <div class="input-group-append">
-                    <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add</button>
-                </div>
-            </div>
+
+
+        <div class="container" style="width: 20rem;">
+            <p class="fs-1 text-center">{{lista.category.name}}</p>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-dark">{{lista.name}}</li>
+
+                {% for item in items %}
+                        <li class="list-group-item">
+                            {% if item.complete == True %}
+                            <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="positive" checked>
+                            <label class="form-check-label" for="positive">{{item.name}}</label>
+                            {% else %}
+                            <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="negative">
+                            <label class="form-check-label" for="negative">{{item.name}}</label>
+                            {% endif %}
+                        </li>
+                {% endfor %}
+            </ul>
 
         </div>
+
+            <div class="container p-3" style="width: 20rem;">
+                <div class="input-group">
+                    <input name="item" type="text" class="form-control" id="formGroupExampleInput" placeholder="Add new item ...">
+                    <div class="input-group-append">
+                        <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add</button>
+                    </div>
+                </div>
+                <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+            </div>
+
     </form>
 
 </body>
