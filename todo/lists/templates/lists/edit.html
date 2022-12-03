@@ -32,13 +32,22 @@
 		.sidenav a:hover{
 			color:#f1f1f1;
 		}
+
+		.delete-link {
+		    text-decoration: none;
+		    font-weight: 900;
+		    color: #ff4d4d;
+		    font-size: 25px;
+		    line-height: 0;
+		}
+
     </style>
 
 </head>
 
 <body class="bg-secondary text-white">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,28 +74,32 @@
     <form method="post" action="#">
         {% csrf_token %}
 
-
-        <div class="container" style="width: 30rem;">
-            <p class="fs-1 text-center">{{lista.category.name}}</p>
-            <ul class="list-group">
+        <div class="card bg-dark text-white mx-auto my-3" style="width: 30rem;">
+            <p class="fs-1 text-center my-3">{{lista.category.name}}</p>
+            <ul class="list-group m-3 border border-secondary border-top-0">
                 <li class="list-group-item list-group-item-dark text-center">{{lista.name}}</li>
 
                 {% for item in items %}
-                        <li class="list-group-item">
+                        <li class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding: 10px; justify-content: space-between;">
                             {% if item.complete == True %}
-                            <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="positive" checked>
-                            <label class="form-check-label text-decoration-line-through" for="positive">{{item.name}}</label>
-                            <a class="delete-link" href="{% url 'delete-item' item.id %}">&#215;</a>
+                                <div class="item">
+                                    <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="positive" checked>
+                                    <label class="form-check-label text-decoration-line-through" for="positive">{{item.name}}</label>
+                                </div>
+                                    <a class="delete-link" href="{% url 'delete-item' item.id %}">&#215;</a>
                             {% else %}
-                            <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="negative">
-                            <label class="form-check-label" for="negative">{{item.name}}</label>
-                            <a class="delete-link" href="{% url 'delete-item' item.id %}">&#215;</a>
+                                <div class="item">
+                                    <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="negative">
+                                    <label class="form-check-label" for="negative">{{item.name}}</label>
+                                </div>
+                                <a class="delete-link" href="{% url 'delete-item' item.id %}">&#215;</a>
+
                             {% endif %}
                         </li>
                 {% endfor %}
             </ul>
 
-        </div>
+
 
             <div class="container p-3" style="width: 30rem;">
                 <div class="input-group">
@@ -95,11 +108,13 @@
                         <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add</button>
                     </div>
                 </div>
-                <button type="submit" name="save" value="save" class="btn btn-success" style="margin-top: 10px;">Save</button>
+            </div>
+            <div class="container text-center my-3" style="margin-top: 10px;">
+                <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
             </div>
 
     </form>
-
+    </div>
 </body>
 
 </html>

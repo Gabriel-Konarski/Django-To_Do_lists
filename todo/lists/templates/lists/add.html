@@ -35,7 +35,7 @@
     </style>
 
 </head>
-<body  class="mb-2 bg-secondary text-white">
+<body class="mb-2 bg-secondary text-white">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark ">
         <div class="container-fluid">
@@ -56,14 +56,8 @@
         </div>
     </nav>
 
-    <div class="sidenav">
-        <a href="{% url 'lists' %}">Home</a>
-        <a href="{% url 'create' %}">Create</a>
-    </div>
-
-
-    <div class="container text-center" style="width: 20rem;">
-        <p class="fs-1 text-center">New list</p>
+    <div class="card text-center bg-dark text-white mx-auto my-3" style="width: 30rem;">
+        <p class="fs-1 text-center my-3">New list</p>
 
         <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
@@ -90,7 +84,7 @@
                 <input name="category_new" type="text" placeholder="Create a new category" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-success">Create</button>
+            <button type="submit" class="btn btn-success my-3">Create</button>
             </form>
         </div>
 </body>
