@@ -80,6 +80,16 @@ def deleteList(request, pk):
     if request.method == "POST":
         lista.delete()
 
+    return render(request, "lists/delete.html", context)
+
+
+def deleteItem(request, pk):
+    item = get_object_or_404(Item, id=pk)
+    context = {"item": item}
+
+    if request.method == "POST":
+        item.delete()
+
         return HttpResponseRedirect("/")
 
     return render(request, "lists/delete.html", context)
