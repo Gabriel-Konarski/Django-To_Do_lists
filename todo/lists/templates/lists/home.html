@@ -14,11 +14,11 @@
             width: 160px;
             position: fixed;
             z-index:1;
-			top:20;
+			top:0;
 			left:0;
 			background-color:#111;
 			overflow-x: :hidden;
-			padding-top:20px;
+			padding-top:70px;
         }
 
         .sidenav a {
@@ -43,7 +43,7 @@
 <body class="mb-2 bg-secondary text-white">
 
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark ">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@
     </div>
 
 
-    <div class="container text-center">
+    <div class="container text-center" style="padding-top:70px;">
         <div class="row">
 
             {% for list in all_lists %}
@@ -86,7 +86,7 @@
                                         <p class="card-text m_title" >{{item}}</p>
                                     {% endfor %}
                             <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">Edit</a>
-                            <a href="{% url 'delete' list.id %}" type="button" class="btn btn-danger"> Delete</a>
+                            <a href="{% url 'delete-list' list.id %}" name="deleteList" type="button" class="btn btn-danger"> Delete</a>
 
                         </div>
                     </div>
