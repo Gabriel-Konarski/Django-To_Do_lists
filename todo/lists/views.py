@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 
 from .models import Category, List, Item
 # Create your views here.
@@ -72,3 +72,14 @@ def addList(request):
     context = {'categories': categories}
     return render(request, "lists/add.html", context)
 
+
+def deleteList(request, pk):
+    lista = get_object_or_404(List, id=pk)
+    context = {"lista": lista}
+
+    if request.method == "POST":
+        lista.delete()
+
+        return HttpResponseRedirect("/")
+
+    return render(request, "lists/delete.html", context)

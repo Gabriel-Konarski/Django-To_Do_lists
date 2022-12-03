@@ -40,7 +40,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Your lists</a>
+            <a class="navbar-brand">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,7 +75,7 @@
                         <li class="list-group-item">
                             {% if item.complete == True %}
                             <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="positive" checked>
-                            <label class="form-check-label" for="positive">{{item.name}}</label>
+                            <label class="form-check-label text-decoration-line-through" for="positive">{{item.name}}</label>
                             {% else %}
                             <input class="form-check-input me-1" type="checkbox" value="clicked" name="c{{item.id}}" id="negative">
                             <label class="form-check-label" for="negative">{{item.name}}</label>
