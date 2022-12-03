@@ -45,7 +45,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Your lists</a>
+            <a class="navbar-brand">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,7 +65,9 @@
     <div class="sidenav">
         <a href="{% url 'lists' %}">All</a>
         {% for category in categories %}
-            <a href="{% url 'lists' %}?category={{category.name}}">{{category.name}}</a>
+            {% if category.list_set.count > 0 %}
+                <a href="{% url 'lists' %}?category={{category.name}}">{{category.name}}</a>
+            {% endif %}
         {% endfor %}
 
     </div>
@@ -84,7 +86,7 @@
                                         <p class="card-text m_title" >{{item}}</p>
                                     {% endfor %}
                             <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">Edit</a>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <a href="{% url 'delete' list.id %}" type="button" class="btn btn-danger"> Delete</a>
 
                         </div>
                     </div>
