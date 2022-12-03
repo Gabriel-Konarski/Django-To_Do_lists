@@ -80,8 +80,8 @@
                 <div class="col-md-4">
                     <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">{{list.category.name}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{list.name}}</h6>
+                            <h5 class="card-title">{{list.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{list.category.name}}</h6>
                                     {% for item in list.item_set.all %}
                                         <p class="card-text m_title" >{{item}}</p>
                                     {% endfor %}

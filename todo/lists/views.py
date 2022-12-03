@@ -80,6 +80,8 @@ def deleteList(request, pk):
     if request.method == "POST":
         lista.delete()
 
+        return HttpResponseRedirect("/")
+
     return render(request, "lists/delete.html", context)
 
 
