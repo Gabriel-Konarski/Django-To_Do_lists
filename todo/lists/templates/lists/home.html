@@ -43,7 +43,7 @@
 <body class="mb-2 bg-secondary text-white">
 
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Your lists</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'create' %}">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'account' %}">Account</a>
             </li>
         </ul>
         </div>
@@ -85,8 +88,8 @@
                                     {% for item in list.item_set.all %}
                                         <p class="card-text m_title" >{{item}}</p>
                                     {% endfor %}
-                            <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">Edit</a>
-                            <a href="{% url 'delete-list' list.id %}" name="deleteList" type="button" class="btn btn-danger"> Delete</a>
+                            <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">View</a>
+                            <a href="{% url 'delete-list' list.id %}" name="deleteList" type="button" class="btn btn-danger">Delete</a>
 
                         </div>
                     </div>

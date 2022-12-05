@@ -73,6 +73,14 @@ def addList(request):
     return render(request, "lists/add.html", context)
 
 
+def userDetail(request):
+    lists = List.objects.all()
+    categories = Category.objects.all()
+    context = {'lists': lists, 'categories': categories}
+
+    return render(request, "lists/user.html", context)
+
+
 def deleteList(request, pk):
     lista = get_object_or_404(List, id=pk)
     context = {"lista": lista}
@@ -93,5 +101,17 @@ def deleteItem(request, pk):
         item.delete()
 
         return HttpResponseRedirect("/")
+
+    return render(request, "lists/delete.html", context)
+
+
+def deleteCategory(request, pk):
+    category = get_object_or_404(Category, id=pk)
+    context = {'category': category}
+
+    if request.method == "POST":
+        category.delete()
+
+        return redirect('account')
 
     return render(request, "lists/delete.html", context)
