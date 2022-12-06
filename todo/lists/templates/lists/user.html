@@ -9,29 +9,6 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <style type="text/css">
-        .sidenav{
-            height: 100%;
-            width: 160px;
-            position: fixed;
-            z-index:1;
-			top:20;
-			left:0;
-			background-color:#111;
-			overflow-x: :hidden;
-			padding-top:20px;
-        }
-
-        .sidenav a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			font-size:25px;
-			color: #818181;
-			display:block;
-		}
-
-		.sidenav a:hover{
-			color:#f1f1f1;
-		}
 
         .delete-link {
 		    text-decoration: none;
@@ -69,19 +46,12 @@
         </div>
     </nav>
 
-
-      <div class="sidenav">
-        <a href="{% url 'lists' %}">Home</a>
-        <a href="{% url 'create' %}">Create</a>
-    </div>
-
-
      <div class="card bg-dark text-white mx-auto my-3" style="width: 40rem; padding-left: 20px">
         <div class="card-body">
-            <h5 class="card-title" >Username</h5>
-            <h6 class="card-subtitle mb-2 text-muted">user.email@gmail.com</h6>
+            <h5 class="card-title" style="text-transform: capitalize;">{{request.user}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{request.user.email}}</h6>
         </div>
-         <h6 class="card-text my-3">You have {{ lists.count }} created lists</h6>
+         <h6 class="card-text my-3" style="padding-left: 30px;">You have {{ lists.count }} created lists</h6>
     </div>
 
     <div class="card bg-dark text-white mx-auto my-3" style="width: 40rem; padding-left: 20px;">
@@ -93,10 +63,10 @@
             <div class="card-text my-3">
                     <h4> Used categories: </h4>
                         {% for category in categories %}
-                            <li class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;">
+                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;">
                                     {{category.name}}
                                     <a class="delete-link" href="{% url 'lists' %}?category={{category.name}}">&#8250;</a>
-                            </li>
+                            </div>
                         {% endfor %}
                 </div>
             </div>
@@ -107,14 +77,14 @@
                 <div class="card-text my-3">
                     <h4> Unused categories: </h4>
                         {% for category in categories %}
-                            <li class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; gap: 10%;">
+                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; gap: 10%;">
 
                                 {% if category.list_set.count == 0 %}
                                     {{category.name}}
                                     <a class="delete-link" href="{% url 'delete-category' category.id %}">&#215;</a>
                                 {% endif %}
 
-                            </li>
+                            </div>
 
                         {% endfor %}
                 </div>
@@ -128,7 +98,21 @@
         <div class="card-body">
             <h2 class="card-title">Lists</h2>
         </div>
+
+        <div class="card bg-dark text-white mx-auto my-3 border-0" style="width: 20rem;">
+            <div class="card-text my-3">
+                    <h4> Your lists: </h4>
+                        {% for list in lists %}
+                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;">
+                                    {{list.name}}
+                                    {{list.category}}
+                                    <a class="delete-link" href="">&#8250;</a>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
     </div>
+
 
 
 </body>

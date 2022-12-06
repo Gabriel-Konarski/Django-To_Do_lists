@@ -6,13 +6,14 @@ from .models import Category, List, Item
 
 def lists(request):
     category = request.GET.get('category')
+    user = request.user
 
     if category is None:
-        all_lists = List.objects.all()
+        all_lists = List.objects.filter(category__user=user)
     else:
-        all_lists = List.objects.filter(category__name=category)
+        all_lists = List.objects.filter(category__user=user, category__name=category)
 
-    categories = Category.objects.all()
+    categories = Category.objects.filter(user=user)
     context = {"categories": categories, "all_lists": all_lists}
 
     return render(request, "lists/home.html", context)
@@ -67,6 +68,8 @@ def addList(request):
             name=data['name'],
         )
 
+        request.user.category_set.add(category)
+
         return redirect('lists')
 
     context = {'categories': categories}
@@ -74,8 +77,9 @@ def addList(request):
 
 
 def userDetail(request):
-    lists = List.objects.all()
-    categories = Category.objects.all()
+    user = request.user
+    lists = List.objects.filter(category__user=user)
+    categories = Category.objects.filter(user=user)
     context = {'lists': lists, 'categories': categories}
 
     return render(request, "lists/user.html", context)

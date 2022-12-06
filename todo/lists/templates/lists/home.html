@@ -60,6 +60,13 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'account' %}">Account</a>
             </li>
+            <li class="nav-item">
+                {% if request.user.is_authenticated %}
+                    <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </li>
         </ul>
         </div>
         </div>
@@ -86,7 +93,9 @@
                             <h5 class="card-title">{{list.name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{list.category.name}}</h6>
                                     {% for item in list.item_set.all %}
-                                        <p class="card-text m_title" >{{item}}</p>
+                                        {% if item.complete == False %}
+                                            <p class="card-text m_title" >{{item}}</p>
+                                        {% endif%}
                                     {% endfor %}
                             <a href="{% url 'view' list.id %}" class="btn btn-primary m-1">View</a>
                             <a href="{% url 'delete-list' list.id %}" name="deleteList" type="button" class="btn btn-danger">Delete</a>
