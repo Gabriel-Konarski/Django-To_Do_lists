@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 
 from .models import Category, List, Item
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required()
 def lists(request):
     category = request.GET.get('category')
     user = request.user
@@ -19,6 +21,7 @@ def lists(request):
     return render(request, "lists/home.html", context)
 
 
+@login_required()
 def viewList(request, pk):
     lista = List.objects.get(id=pk)
     items = lista.item_set.all()
@@ -47,9 +50,10 @@ def viewList(request, pk):
 
     context = {"lista": lista, "items": items}
 
-    return render(request, "lists/edit.html", context)
+    return render(request, "lists/view.html", context)
 
 
+@login_required()
 def addList(request):
     categories = Category.objects.all()
 
@@ -76,6 +80,7 @@ def addList(request):
     return render(request, "lists/add.html", context)
 
 
+@login_required()
 def userDetail(request):
     user = request.user
     lists = List.objects.filter(category__user=user)
@@ -85,6 +90,7 @@ def userDetail(request):
     return render(request, "lists/user.html", context)
 
 
+@login_required()
 def deleteList(request, pk):
     lista = get_object_or_404(List, id=pk)
     context = {"lista": lista}
@@ -97,6 +103,7 @@ def deleteList(request, pk):
     return render(request, "lists/delete.html", context)
 
 
+@login_required()
 def deleteItem(request, pk):
     item = get_object_or_404(Item, id=pk)
     context = {"item": item}
@@ -109,6 +116,7 @@ def deleteItem(request, pk):
     return render(request, "lists/delete.html", context)
 
 
+@login_required()
 def deleteCategory(request, pk):
     category = get_object_or_404(Category, id=pk)
     context = {'category': category}
@@ -119,3 +127,29 @@ def deleteCategory(request, pk):
         return redirect('account')
 
     return render(request, "lists/delete.html", context)
+
+
+@login_required()
+def updateList(request, pk):
+    lista = List.objects.get(id=pk)
+    categories = Category.objects.all()
+
+    if request.method == 'POST':
+        data = request.POST
+        name = lista.name
+        category = lista.category
+
+        if data["name"] != "":
+            lista.name = data["name"]
+        if data["category"] != "none":
+            lista.category = Category.objects.get(id=data['category'])
+        elif data["category_new"] != '':
+            lista.category, created = Category.objects.get_or_create(name=data["category_new"])
+
+        lista.save()
+        request.user.category_set.add(category)
+
+        return redirect('lists')
+
+    context = {"lista": lista, "categories": categories}
+    return render(request, "lists/update.html", context)
