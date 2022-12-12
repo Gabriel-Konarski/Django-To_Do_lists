@@ -145,10 +145,9 @@ def updateList(request, pk):
             lista.category = Category.objects.get(id=data['category'])
         elif data["category_new"] != '':
             lista.category, created = Category.objects.get_or_create(name=data["category_new"])
+            request.user.category_set.add(lista.category)
 
         lista.save()
-        request.user.category_set.add(category)
-
         return redirect('lists')
 
     context = {"lista": lista, "categories": categories}
