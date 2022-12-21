@@ -1,33 +1,18 @@
 # Django - To Do lists App
-To do lists app with user specific data. 
+#### To do lists app with user specific data. 
+
+![](readme_files/list_view.png)
+![](readme_files/account.png)
+
+#### User authentication
+![](readme_files/login.png)
+
+#### Category filter
+![](readme_files/category_filter.gif)
 
 ## Cloning the repository
-
---> Clone the repository using the command below :
-```bash
-git clone https://github.com/Gabriel-Konarski/Django-To_Do_lists.git
-```
---> Move into the directory where we have the project files :
-```bash
-cd Django-To_Do_lists
-```
---> Create a virtual environment :
-```python
-# If you are on Windows
-virtualenv env
-# If you are on Linux or Mac
-python -m venv env
-```
---> Activate the virtual environment :
-```python
-# If you are on Windows
-.\env\Scripts\activate
-# If you are on Linux or Mac
-source env/bin/activate
-```
+![](readme_files/cloning_repo.png)
 
 ## Running the App
-```bash
-1. pip install -r requirements.txt
-2. python manage.py runserver
-```
+![](readme_files/commands.png)
+
