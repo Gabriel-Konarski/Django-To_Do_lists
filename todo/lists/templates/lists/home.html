@@ -5,32 +5,6 @@
     <title>Home</title>
 
 
-    <style>
-        .sidenav{
-            height: 100%;
-            width: 160px;
-            position: fixed;
-            z-index:1;
-			top:0;
-			left:0;
-			background-color:#111;
-			overflow-x: :hidden;
-			padding-top:70px;
-        }
-
-        .sidenav a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			font-size:25px;
-			color: #818181;
-			display:block;
-		}
-
-		.sidenav a:hover{
-			color:#f1f1f1;
-		}
-    </style>
-
     {% extends 'lists/main.html' %}
     {% block content %}
 
@@ -55,8 +29,8 @@
 
             {% for list in all_lists %}
                 <div class="col-md-4">
-                    <div class="card my-2 text-bg-dark p-3" style="width: 18rem;">
-                        <div class="card-body" style="text-transform: capitalize;">
+                    <div class="card my-2 text-bg-dark p-3 list-width">
+                        <div class="card-body capitalize">
                             <h5 class="card-title">{{list.name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{list.category.name}}</h6>
                                     {% for item in list.item_set.all %}
