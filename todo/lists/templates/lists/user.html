@@ -7,48 +7,30 @@
     {% extends 'lists/main.html' %}
     {% block content %}
 
-    <style type="text/css">
 
-        .delete-link {
-		    text-decoration: none;
-		    font-weight: 900;
-		    color: #ff4d4d;
-		    font-size: 25px;
-		    line-height: 0;
-		}
-
-		.update-link {
-		    text-decoration: none;
-		    font-weight: 900;
-		    color: #0095ed;
-		    font-size: 20px;
-		    line-height: 0;
-		}
-
-    </style>
 
 
 </head>
 <body>
 
-     <div class="card bg-dark text-white mx-auto my-3" style="width: 40rem; padding-left: 20px">
+     <div class="card bg-dark text-white mx-auto my-3 card-position">
         <div class="card-body">
-            <h5 class="card-title" style="text-transform: capitalize;">{{request.user}}</h5>
+            <h5 class="card-title capitalize">{{request.user}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{request.user.email}}</h6>
         </div>
-         <h6 class="card-text my-3" style="padding-left: 30px;">You have {{ lists.count }} created lists</h6>
+         <h6 class="card-text my-3 list-counter">You have {{ lists.count }} created lists</h6>
     </div>
 
-    <div class="card bg-dark text-white mx-auto my-3" style="width: 40rem; padding-left: 20px;">
+    <div class="card bg-dark text-white mx-auto my-3 card-position">
         <div class="card-body">
             <h2 class="card-title">Categories</h2>
         </div>
 
-        <div class="card bg-dark text-white mx-auto my-3 border-0" style="width: 20rem;">
+        <div class="card bg-dark text-white mx-auto my-3 border-0 width20">
             <div class="card-text my-3">
                     <h4> Used categories: </h4>
                         {% for category in categories %}
-                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;">
+                            <div class="list-group-item bg-dark text-white icon-position">
                                     {% if category.list_set.count > 0 %}
                                         {{category.name}}
                                     <a class="delete-link" href="{% url 'lists' %}?category={{category.name}}">&#8250;</a>
@@ -60,11 +42,11 @@
 
         <form method="POST" action="">
         {% csrf_token %}
-            <div class="card bg-dark text-white mx-auto my-3 border-0" style="width: 20rem;">
+            <div class="card bg-dark text-white mx-auto my-3 border-0 width20">
                 <div class="card-text my-3">
                     <h4> Unused categories: </h4>
                         {% for category in categories %}
-                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;"">
+                            <div class="list-group-item bg-dark text-white icon-position">
 
                                 {% if category.list_set.count == 0 %}
                                     {{category.name}}
@@ -81,16 +63,16 @@
 
     </div>
 
-    <div class="card bg-dark text-white mx-auto my-3" style="width: 40rem; padding-left: 20px;">
+    <div class="card bg-dark text-white mx-auto my-3 card-position">
         <div class="card-body">
             <h2 class="card-title">Lists</h2>
         </div>
 
-        <div class="card bg-dark text-white mx-auto my-3 border-0" style="width: 20rem;">
+        <div class="card bg-dark text-white mx-auto my-3 border-0 width20">
             <div class="card-text my-3">
                     <h4> Your lists: </h4>
                         {% for list in lists %}
-                            <div class="list-group-item bg-dark text-white" style=" display: flex; align-items: center; padding-left: 20px; justify-content: space-between;">
+                            <div class="list-group-item bg-dark text-white icon-position">
                                     {{list.name}}
                                     <a class="update-link" href="{% url 'update' list.id %}">&#9998;</a>
                             </div>
